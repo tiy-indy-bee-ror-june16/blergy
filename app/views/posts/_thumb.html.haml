@@ -1,0 +1,5 @@
+%span
+  = link_to "Thumbs #{up_or_down || "Up"}!",
+    post_thumbs_path(post, value: value || 1),
+    method: :post,
+    remote: true

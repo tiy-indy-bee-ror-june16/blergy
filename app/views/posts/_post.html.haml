@@ -1,0 +1,9 @@
+%div[post]{class: 'row'}
+  %div.col-md-12
+    %h4
+      = link_to post.title, post
+      = render partial: 'thumb', locals: {post: post, value: 1, up_or_down: "Up"}
+
+    = truncate(post.body, length: 500)
+
+    %p.meta Posted by #{post.user.username} on #{post.created_at.to_s(:long)}

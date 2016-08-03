@@ -1,0 +1,5 @@
+<% if @thumb.value == 1 %>
+  $('<%= "#post_#{@thumb.post_id} h4 span" %>').replaceWith('<%=j render partial: 'posts/thumb', locals: {post: @thumb.post, value: -1, up_or_down: "Down"} %>')
+<% else %>
+  $('<%= "#post_#{@thumb.post_id} h4 span" %>').replaceWith('<%=j render partial: 'posts/thumb', locals: {post: @thumb.post, value: 1, up_or_down: "Up"} %>')
+<% end %>

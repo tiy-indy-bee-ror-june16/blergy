@@ -1,24 +1,7 @@
-<p id="notice"><%= notice %></p>
+<% if current_user %>
+ <%= render partial: 'addendums/form', locals: {object: @user} %>
+<% end %>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-  <%= @user.bio %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div id="post_addendums">
+  <%= render @user.addendums %>
+</div>

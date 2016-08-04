@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  resources :posts do
-    resources :thumbs
+  scope "/things" do
+    resources :posts do
+      resources :thumbs
+      resources :addendums
+    end
+  end
+  resources :users do
     resources :addendums
   end
-  resources :users
 
   get '/login' => 'authentication#new'
   post '/login' => 'authentication#create'

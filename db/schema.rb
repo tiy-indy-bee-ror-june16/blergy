@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803151110) do
+ActiveRecord::Schema.define(version: 20160804154640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,10 +18,11 @@ ActiveRecord::Schema.define(version: 20160803151110) do
   create_table "addendums", force: :cascade do |t|
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_addendums_on_post_id", using: :btree
+    t.integer  "commentable_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "commentable_type", default: "Post"
+    t.index ["commentable_id"], name: "index_addendums_on_commentable_id", using: :btree
     t.index ["user_id"], name: "index_addendums_on_user_id", using: :btree
   end
 
@@ -49,11 +50,12 @@ ActiveRecord::Schema.define(version: 20160803151110) do
     t.text     "bio"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "role",            default: "user"
   end
 
-  add_foreign_key "addendums", "posts"
+  add_foreign_key "addendums", "posts", column: "commentable_id"
   add_foreign_key "addendums", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "thumbs", "posts"

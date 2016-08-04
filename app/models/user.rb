@@ -5,6 +5,12 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :thumbs
-  has_many :addendums
+
+  has_many :written_addendums, class_name: Addendum
+  has_many :addendums, as: :commentable
+
+  def admin?
+    role == "admin"
+  end
 
 end

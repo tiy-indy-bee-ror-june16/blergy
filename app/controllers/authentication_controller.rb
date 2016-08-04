@@ -6,6 +6,7 @@ class AuthenticationController < ApplicationController
   def create
     if @user = User.find_by(username: params[:user][:username]).try(:authenticate, params[:user][:password])
       session[:user_id] = @user.id
+      Rails.logger.info @user.inspect
       flash[:success] = "Welcome back!"
       redirect_to :root
     else

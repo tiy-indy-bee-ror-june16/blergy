@@ -1,3 +1,4 @@
 %div[addendum]{class: "row comment"}
   = simple_format addendum.body
-  %p.meta Posted by #{addendum.user.username}
+  %p.meta Posted by #{addendum.user.username}. #{link_to addendum.created_at.to_s(:long), [addendum.commentable, addendum]}
+  %p.actions Actions: #{link_to "Delete", [addendum.commentable, addendum], method: :delete}

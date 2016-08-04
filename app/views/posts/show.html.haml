@@ -4,10 +4,7 @@
 %p.meta Posted by #{@post.user.username}
 
 - if current_user
-  %h6 Post a comment ...
-  = simple_form_for [@post, @addendum] do |f|
-    = f.input :body
-    = f.submit
+  = render partial: 'addendums/form', locals: {object: @post}
 
 #post_addendums
   = render @post.addendums

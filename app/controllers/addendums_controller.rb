@@ -34,7 +34,7 @@ class AddendumsController < ApplicationController
   def allowed_to_destroy
     @addendum = Addendum.find(params[:id])
     unless @addendum.allowed_to_destroy?(current_user)
-      redirect_back(fallback_location: root_path, flash: {danger: "Hey asshole, that ain't yours"})
+      redirect_back(fallback_location: root_path, flash: {danger: "Hey, that ain't yours"})
     end
   end
 
